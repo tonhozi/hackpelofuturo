@@ -17,14 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("typed-message").value = "";
     });
   });
+
+  /* Time */
+  var deviceTime = document.querySelector(".status-bar .time");
+  var messageTime = document.querySelectorAll(".message .time");
+
+  deviceTime.innerHTML = moment().format("h:mm");
+
+  /* Message */
+
+  var form = document.querySelector(".conversation-compose");
+  var conversation = document.querySelector(".conversation-container");
+
+  form.addEventListener("submit", newMessage);
 });
-
-/* Time */
-
-var deviceTime = document.querySelector(".status-bar .time");
-var messageTime = document.querySelectorAll(".message .time");
-
-deviceTime.innerHTML = moment().format("h:mm");
 
 setInterval(function () {
   deviceTime.innerHTML = moment().format("h:mm");
@@ -33,13 +39,6 @@ setInterval(function () {
 for (var i = 0; i < messageTime.length; i++) {
   messageTime[i].innerHTML = moment().format("h:mm A");
 }
-
-/* Message */
-
-var form = document.querySelector(".conversation-compose");
-var conversation = document.querySelector(".conversation-container");
-
-form.addEventListener("submit", newMessage);
 
 function newMessage(e) {
   var input = e.target.input;
